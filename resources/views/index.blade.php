@@ -6,70 +6,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List</title>
   <style>
-    body {
-      width: 1000px;
-      background: #0000FF;
-    }
-    
-    .todo-list {
+    .container {
+      background-color: #0000ff;
+      height: 100vh;
+      width: 100vw;
       position: relative;
-      width: 80%;
-      padding: 70px 0 50px;
-      margin: 0 auto;
-      background: #ffffff;
+    }
+
+    .todo-list {
+      background-color: #fff;
+      position: absolute;
+      width: 50vw;
+      padding: 30px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       border-radius: 10px;
     }
 
-    h1 {
-      position: absolute;
-      top: 10px;
-      left: 30px;
+    .title {
+      font-weight; bold;
       font-size: 25px;
     }
 
-    .form__item-first {
-      margin-bottom: 20px;
+    .mb-15 {
+      margin-bottom: 15px;
     }
 
-    .form__item-input {
-      padding: 10px 200px;
-      margin-left: 30px;
+    .between {
+      justify-content: space-between;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .mb-30 {
+      margin-bottom: 30px;
+    }
+
+    .input-add {
+      width: 80%;
+      padding: 5px;
+      font-size: 14px;
       border: solid 1px #c0c0c0;
       border-radius: 5px;
     }
 
-    .btn__add {
-      padding: 10px 20px;
-      margin-left: 100px;
-      background: #ffffff;
+    .button-add {
+      text-align: left;
+      padding: 8px 16px;
+      font-size: 12px;
+      background: #fff;
+      font-weight: bold;
       color: #800080;
       border: solid 2px #800080;
       border-radius: 5px;
     }
 
-    .form__item-second {
-      
+    table {
+      text-align: center;
     }
-
-    .form__item-task {
-      padding: 7px 100px;
+    
+    .input-update {
+      width: 90%;
+      padding: 5px ;
       border: solid 1px #c0c0c0;
       border-radius: 5px;
+      font-size: 14px;
     }
 
-    .btn__update {
-      padding: 10px 20px;
-      margin-left: 30px;
-      background: #ffffff;
+    .button-update {
+      text-align: left;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: bold;
+      background: #fff;
       color: #ff0000;
       border: solid 2px #ff0000;
       border-radius: 5px;
     }
 
-    .btn__delete {
-      padding: 10px 20px;
-      margin-left: 50px;
-      background: #ffffff;
+    .button-delete {
+      text-align: left;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: bold;
+      background: #fff;
       color: #00bfff;
       border: solid 2px #00bfff;
       border-radius: 5px;
@@ -78,25 +101,47 @@
 </head>
 
 <body>
+  <div class="container">
     <div class="todo-list">
-      <h1>Todo List</h1>
-      <form class="form" name="todo" method="post" action="/todos/create">
+      <p class="title mb-15">Todo List</p>
+      <div class="todo">
+      <form class="flex between mb-30" action="/todos/create" method="post">
         @csrf
-        <div class="form__item-first">
-            <input type="text" name="text" class="form__item-input" maxlength="20" required>
-            <input type="submit" value="追加" class="btn__add">
-        </div>
-        
-        <div class="form__item-second">
-        @foreach($todos as $todo)
-        {{$todo->created_at}}
-        @endforeach
-        <div class="form__item-label">タスク名</div>
-        <input type="text" name="task" class="form__item-task">
-        <input type="submit" value="更新" class="btn__update">
-        <input type="reset" value="削除" class="btn__delete">
-        </div>
-      </form>  
-    </div> 
+        <input type="text" class="input-add" name="content">
+        <input class="button-add" type="submit" value="追加">
+      </form>
+        <table>
+          <tbody>
+            <tr>
+              <th>作成日</th>
+              <th>タスク名</th>
+              <th>更新</th>
+              <th>削除</th>
+            </tr>
+            <tr>
+              <td>
+              @foreach($todos as $todo)
+              {{$todo->created_at}}
+              @endforeach
+              </td>
+              <td>
+                <input type="text" class="input-update" name="content">
+              </td>
+              <td>
+                <form action="/todos/update" method="put"> 
+                  <button class="button-update">更新</button>
+                </form>
+              </td>
+              <td>
+                <form action="/todos/delete" method="delete"> 
+                  <button class="button-delete">削除</button>
+                </form>  
+              </td>
+            </tr>
+          </tbody>
+        </table> 
+      </div>
+    </div>
+  </div>
 </body>
 </html>
