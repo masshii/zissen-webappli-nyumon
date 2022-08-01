@@ -1,6 +1,6 @@
 # アプリケーション名
 Todo application
-< --- トップ画面の画像 ---- >
+![2022-08-01 (1)](https://user-images.githubusercontent.com/106829132/182103537-4b8e4992-6b7d-4925-8b0b-36ce8877cd2b.png)
 
 ## 作成した目的
 実践実践  webアプリ（入門）　演習問題
@@ -16,10 +16,9 @@ PHP 8.1.6
 Laravel 9.x
 
 ## テーブル設計
-< --- 作成したテーブル設計の画像 ---- >
+![2022-08-01 (2)](https://user-images.githubusercontent.com/106829132/182128344-060f3ba9-528c-4c53-a2b0-162b948efe1f.png)
+
 
 ## ER図
 ![index drawio](https://user-images.githubusercontent.com/106829132/182017174-25ee14ba-36a5-425f-8949-4ca35d6a6209.png)
 
-## 他に記載することがあれば記述する
-例） ## 環境構築、## アカウントの種類（テストユーザーなど）
