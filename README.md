@@ -1,6 +1,6 @@
 # アプリケーション名
 Todo application
-< --- トップ画面の画像 ---- >
+![2022-08-01](https://user-images.githubusercontent.com/106829132/182103008-38b30cd7-42cf-45a5-827d-5eef3d2782a5.png)
 
 ## 作成した目的
 実践実践  webアプリ（入門）　演習問題
