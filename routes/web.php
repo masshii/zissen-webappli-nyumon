@@ -15,5 +15,7 @@ use App\Http\Controllers\TodoController;
 
 Route::get('todos', [TodoController::class, 'index']);
 Route::post('todos/create', [TodoController::class, 'create']);
-Route::put('todos/update', [TodoController::class, 'update']);
-Route::delete('todos/delete', [TodoController::class, 'delete']);
+Route::get('todos/edit',[TodoController::class, 'edit']);
+Route::put('todos/update/{id}', [TodoController::class, 'update']);
+Route::delete('todos/delete/{id}', [TodoController::class, 'delete']);
+Route::post('todos/delete', [TodoController::class, 'remove']);

@@ -13,7 +13,7 @@ class TodoCreatequest extends FormRequest
      */
     public function authorize()
     {
-        if($todo->path() == "/") {
+        if($this->path() == "/") {
             return true;
         }else {
             return false;
@@ -28,7 +28,7 @@ class TodoCreatequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => "required",
+            'title' => "required",
         ];
     }
 }

@@ -66,6 +66,7 @@
 
     table {
       text-align: center;
+      width: 100%;
     }
     
     .input-update {
@@ -118,26 +119,30 @@
               <th>更新</th>
               <th>削除</th>
             </tr>
+            @foreach($todos as $todo)
             <tr>
               <td>
-              @foreach($todos as $todo)
               {{$todo->created_at}}
-              @endforeach
+              </td>
+                <form action="/todos/update/{{$todo->id}}" method="post"> 
+                  @csrf
+                  <input type="hidden" name="_method" value="PUT">
+              <td>
+                  <input type="text" class="input-update" name="content" value="{{$todo->title}}">
               </td>
               <td>
-                <input type="text" class="input-update" name="content">
-              </td>
-              <td>
-                <form action="/todos/update" method="put"> 
-                  <button class="button-update">更新</button>
+                  <input class="button-update" type="submit" value="更新">
                 </form>
               </td>
               <td>
-                <form action="/todos/delete" method="delete"> 
-                  <button class="button-delete">削除</button>
+                <form action="/todos/delete/{{$todo->id}}" method="post"> 
+                  @csrf
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input class="button-delete" type="submit" value="削除">
                 </form>  
               </td>
             </tr>
+            @endforeach
           </tbody>
         </table> 
       </div>
