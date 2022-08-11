@@ -25,6 +25,13 @@ class TodoController extends Controller
         return view('index', ['todos' => $todos]);
     }
 
+    public function store(Request $request)
+    {
+        $inputs=$request->validate(['title'=>'required|max:20',]);
+
+        $todo->title=$inputs['title'];
+    }
+
     public function edit(Request $request)
     {
         $todos = Todo::find($request->id);

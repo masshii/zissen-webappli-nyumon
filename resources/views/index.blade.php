@@ -105,6 +105,15 @@
   <div class="container">
     <div class="todo-list">
       <p class="title mb-15">Todo List</p>
+      @if($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif  
       <div class="todo">
       <form class="flex between mb-30" action="/todos/create" method="post">
         @csrf

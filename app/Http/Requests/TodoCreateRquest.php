@@ -30,5 +30,5 @@ class TodoCreatequest extends FormRequest
         return [
             'title' => "required",
         ];
-    }
+    }    
 }
