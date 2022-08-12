@@ -16,20 +16,18 @@ class TodoController extends Controller
 
     public function create(Request $request)
     {
+        $inputs=$request->validate(['content'=>'required|max:20',],
+        [
+            'content.required'=>'タイトルは必須です',
+        ]);
+
         $title = $request->input('content');
         $todo = new Todo();
-        $todo->title=$title;
+        $todo->title=$inputs['content'];
         $todo->save();
         $todos = Todo::all();
         
         return view('index', ['todos' => $todos]);
-    }
-
-    public function store(Request $request)
-    {
-        $inputs=$request->validate(['title'=>'required|max:20',]);
-
-        $todo->title=$inputs['title'];
     }
 
     public function edit(Request $request)
