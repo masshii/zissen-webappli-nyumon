@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Http\Requests\TodoCreateRequest;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -14,20 +15,14 @@ class TodoController extends Controller
         return view('index', ['todos' => $todos]);
     }
 
-    public function create(Request $request)
+    public function create(TodoCreateRequest $request)
     {
-        $inputs=$request->validate(['content'=>'required|max:20',],
-        [
-            'content.required'=>'タイトルは必須です',
-        ]);
-
         $title = $request->input('content');
         $todo = new Todo();
-        $todo->title=$inputs['content'];
+        $todo->title=$title;
         $todo->save();
-        $todos = Todo::all();
         
-        return view('index', ['todos' => $todos]);
+        return redirect('/todos');
     }
 
     public function edit(Request $request)
@@ -43,18 +38,16 @@ class TodoController extends Controller
         $todo = Todo::find($id);
         $todo->title=$title;
         $todo->save();
-        $todos = Todo::all();
         
-        return view('index', ['todos' => $todos]);
+        return redirect('/todos');
     }
 
     public function delete(Request $request,$id)
     {
         $todo = Todo::find($id);
         $todo->delete();
-        $todos = Todo::all();
-
-        return view('index', ['todos' => $todos]);
+        
+        return redirect('/todos');
     }
 
     public function remove(Request $request)
